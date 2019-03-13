@@ -1,0 +1,1 @@
+export const LOAD_CONTACT_LIST = "http://pb2.localhost/rest.php?action=list";
