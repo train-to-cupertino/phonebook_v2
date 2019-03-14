@@ -24,7 +24,6 @@ export default {
 
 	created() {
 		// Получаем список контактов
-		//this.$store.dispatch(MUTATION.GET_CONTACT_LIST);
 		this.$store.dispatch('getContactList');
 	},
 
