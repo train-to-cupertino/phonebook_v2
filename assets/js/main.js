@@ -2,17 +2,21 @@ import Vue from 'vue'
 import VueResource from 'vue-resource'
 import VueRouter from 'vue-router'
 import Vuex from 'vuex'
+import Vuetify from 'vuetify'
+
 import getStore from './store.js'
 import App from './App.vue'
 
+Vue.use(VueResource)
+Vue.use(VueRouter)
+Vue.use(Vuex)
+Vue.use(Vuetify)
 
 Vue.config.productionTip = false
-Vue.use(VueResource)
-Vue.use(Vuex)
-Vue.use(VueRouter)
-
+Vue.config.devtools = true
 
 const store = getStore();
+
 
 import ContactList from "./components/ContactList.vue"
 

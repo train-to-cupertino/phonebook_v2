@@ -5,7 +5,7 @@
 				{{ data.name }}
 			</span>
 			<span v-show="isEditing">
-				<input type="text" v-model.lazy="name" @blur="onBlur" /><input type="button" value="Отмена" @click="isEditing = false" />
+				<input type="text" v-model.lazy="name"/><input type="button" value="ok" @click="isEditing = false" />
 			</span>
 			<span v-if="data.isLoading">
 				<img src="/img/ajax_loader.gif" />
@@ -53,7 +53,12 @@ export default {
 	
 	methods: {
 		onBlur: function() {
-			console.log('onBlur');
+			//console.log(evt);
+		/*
+			if (this.data && this.data.id) {
+				this.isEditing = false;
+				this.$store.dispatch('changeContactName', { id: this.data.id, name: value });
+			}*/
 		}
 	}
 }
