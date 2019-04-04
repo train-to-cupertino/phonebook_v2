@@ -1,9 +1,9 @@
 <template>
-	<div class="contact_actions">
-		<div :data-id="id">Доб.тел.</div>
-		<div>Ред.</div>
-		<div>Уд.</div>
-	</div>
+	<div style="width: 75px;">
+		<v-icon small class="mr-2" @click="showAddPhoneForm">phone</v-icon>
+		<v-icon small class="mr-2" @click="editItem(id)">edit</v-icon>
+		<v-icon small @click="deleteContact(id)">delete</v-icon>
+	</div>	
 </template>
 
 <script>
@@ -11,14 +11,26 @@ export default {
 	name: "ContactActions",
 	
 	props: ["id"],
+	
+	methods: {
+		editItem: function(item) {
+			alert('editItem ' + JSON.stringify(item))
+		},
+		
+		deleteContact: function(item) {
+			// TODO: имя контакта в сообщении
+			// TODO: модальное окно вместо confirm
+			if (confirm("Действительно удалить контакт?")) 
+				this.$store.dispatch('deleteContact', this.id);
+		},
+		
+		showAddPhoneForm: function() {
+			this.$root.$emit('showAddPhoneForm', this.id);
+		}
+	}	
 }
 </script>
 
 <style>
-div.contact_actions div {
-	display: inline-block;
-	border: 1px solid #1a2e06;
-	margin: 0 2px;
-	cursor: pointer;
-}
+
 </style>

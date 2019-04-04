@@ -15,6 +15,7 @@ class Phonebook {
 		
 		while ($row = $stmt->fetch()) {
 			$contacts[$row['id']] = $row;
+			$contacts[$row['id']]['phones'] = (object)null;
 		}
 		//return $contacts;
 		
@@ -38,8 +39,9 @@ class Phonebook {
 			$contacts[$row['contact_id']]['phones'][$row['id']] = ['id' => $row['id'], 'phone' => $row['phone']];
 		}		
 
-		return $contacts;
-	}	
+		//return $contacts;
+		return array_values($contacts);
+	}
 	
 	
 	// Добавляет контакт с заданными именем и телефоном

@@ -17,7 +17,7 @@ Vue.config.devtools = true
 
 const store = getStore();
 
-
+import 'vuetify/dist/vuetify.min.css'
 import ContactList from "./components/ContactList.vue"
 
 const router = new VueRouter({

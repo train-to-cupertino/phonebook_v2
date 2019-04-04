@@ -1,29 +1,23 @@
 <template>
-	<tr>
-		<td>
-			<span v-show="!isEditing" @click="!isLoading ? isEditing = true : 1 == 1">
-				{{ data.name }}
-			</span>
-			<span v-show="isEditing">
-				<input type="text" v-model.lazy="name"/><input type="button" value="ok" @click="isEditing = false" />
-			</span>
-			<span v-if="data.isLoading">
-				<img src="/img/ajax_loader.gif" />
-			</span>
-		</td>
-		<td><ContactActions :id="data.id" /></td>
-		<td><Phones :id="data.id" /></td>
-	</tr>	
+	<div>
+		<span v-show="!isEditing" @click="!isLoading ? isEditing = true : 1">
+			{{ data.name }}
+		</span>
+		<span v-show="isEditing">
+			<v-text-field :value="name" @change="v => name = v"></v-text-field>			
+			<v-btn small color="primary" @click="isEditing = false">OK</v-btn> <!-- TODO: выключать редактирование даже если не изменилась модель -->
+		</span>
+		<v-progress-circular indeterminate v-if="data.isLoading" color="blue"></v-progress-circular>		
+	</div>
 </template>
 
 <script>
 import ContactActions from "./ContactActions.vue"
-import Phones from "./Phones.vue"
 
 export default {
 	name: "Contact",
 	
-	components: { ContactActions, Phones },
+	components: { ContactActions },
 	
 	props: ["data"],
 	
@@ -34,10 +28,12 @@ export default {
 	},
 	
 	computed: {
+		// Имя контакта
 		name: {
 			get() {
 				if (this.data && this.data.id)
-					return this.$store.getters.contactById(this.data.id).name;
+					if (this.$store.getters.contactById(this.data.id))
+						return this.$store.getters.contactById(this.data.id).name;
 				
 				return null;
 			},
@@ -52,14 +48,13 @@ export default {
 	},
 	
 	methods: {
-		onBlur: function() {
-			//console.log(evt);
 		/*
-			if (this.data && this.data.id) {
-				this.isEditing = false;
-				this.$store.dispatch('changeContactName', { id: this.data.id, name: value });
-			}*/
+		enableEdit: function() {
+			this.$store.state.contacts.map(x => x.isEditing = false);		
+		
+			isEditing = true;
 		}
+		*/
 	}
 }
 </script>
