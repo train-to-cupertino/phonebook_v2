@@ -6,7 +6,7 @@
 					{{ contactWhichPhoneIsEdited ? getContact(contactWhichPhoneIsEdited).name + " - ": "" }} Добавить телефон
 				</v-card-title>
 				<v-card-text>
-					<v-text-field v-model="addedPhone" label="Телефон"></v-text-field>
+					<v-text-field v-model="addedPhone" label="Телефон" mask="+7 (###) ### - ## - ##" :rules="[rules.required, rules.phone]"></v-text-field>
 					<v-btn color="primary" dark @click="addPhone">Добавить</v-btn>
 				</v-card-text>
 				<v-card-actions>
@@ -123,11 +123,12 @@
 		</v-container>
 
 		<div>
-			Поиск контактов по телефону<br/>
+			Оформление: редактирование телефона<br/>
+			Оформление: редактирование контакта<br/>
+			Действие - Редактирование контакта (обработчик)<br/>
 			Drawer под toolbar'ом<br/>
 			Рефакторинг компонентов<br/>
 			Обработка ошибок<br/>
-			Оформление: редактирование телефона<br/>
 		</div>
 	</v-app>
 <!--
@@ -167,6 +168,11 @@ export default {
 			addedPhone: null,
 			
 			search: '',
+			
+			rules: {
+				required: value => !!value || 'Поле не заполнено',
+				phone: value => /^7\d{10}$/.test(value) || 'Введите 10 цифр телефона',
+			}
 		}
 	},
 
@@ -196,8 +202,8 @@ export default {
 			//alert('addPhone');
 			// TODO: addPhone method
 			// contact = null, dispatch addPhone, isAddPhoneFormShown = false
-			if (this.addedPhone && this.contactWhichPhoneIsEdited) {
-				//this.contact
+			if (this.addedPhone && (this.rules.phone(this.addedPhone) === true) && this.contactWhichPhoneIsEdited) {
+				this.addedPhone = this.addedPhone.replace(/(\d{1})(\d{3})(\d{3})(\d{2})(\d{2})/, '+$1 ($2) $3 - $4 - $5');
 				this.$store.dispatch('addPhone', { contact_id: this.contactWhichPhoneIsEdited, phone: this.addedPhone });
 				this.contactWhichPhoneIsEdited = null;
 				this.addedPhone = null;

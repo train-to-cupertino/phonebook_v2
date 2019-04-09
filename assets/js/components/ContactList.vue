@@ -92,18 +92,17 @@ export default {
 		},
 		
 		customFilter(items, search, filter) {
-			//this custom filter will do a multi-match separated by a space.
-			//e.g
+			// Если строка поиска пустая - отдаем все контакты без фильтрации
+			if (!search) { 
+				return items 
+			}
 
-			if (!search) { return items } //if the search is empty just return all the items
-
-			function  new_filter (val, search) {
-				search = search.toString().toLowerCase()
-			
+			//
+			function new_filter (val, search) {
+				search = search.toString().toLowerCase().replace(/[^0-9a-zA-ZА-Яа-яёЁ]+/g,"").toLowerCase()
 				return val !== null &&
 					['undefined', 'boolean'].indexOf(typeof val) === -1 &&
-					//val.toString().toLowerCase().replace(/[^0-9a-zA-ZА-Яа-яёЁ]+/g,"").indexOf(search) !== -1
-					val.toString().toLowerCase().indexOf(search) !== -1
+					val.toString().toLowerCase().replace(/[^0-9a-zA-ZА-Яа-яёЁ]+/g,"").indexOf(search) !== -1
 			}
 
 			//let needleAry = search.toString().toLowerCase().split(" ").filter(x => x);
@@ -111,9 +110,6 @@ export default {
 
 			//return items.filter(row => needleAry.every(needle => Object.keys(row).some(key => new_filter(row[key],needle))));
 			return items.filter(function(row) {
-				console.log(Object.values(row.phones));
-				console.log(Object.values(row.phones).map(x => x.phone));
-			
 				if (new_filter(row.name, search))
 					return true;
 				
