@@ -21,8 +21,8 @@
 					Добавить контакт
 				</v-card-title>
 				<v-card-text>
-					<v-text-field v-model="addedContactName" label="Имя"></v-text-field>
-					<v-text-field v-model="addedContactPhone" label="Телефон"></v-text-field>
+					<v-text-field v-model="addedContactName" label="Имя" :rules="[rules.required]"></v-text-field>
+					<v-text-field v-model="addedContactPhone" label="Телефон" mask="+7 (###) ### - ## - ##" :rules="[rules.required, rules.phone]"></v-text-field>
 					<v-btn color="primary" dark @click="addContact">Добавить</v-btn>
 				</v-card-text>
 				<v-card-actions>
@@ -222,7 +222,8 @@ export default {
 			//alert('addPhone');
 			// TODO: addPhone method
 			// contact = null, dispatch addPhone, isAddPhoneFormShown = false
-			if (this.addedContactName && this.addedContactPhone) {
+			if (this.addedContactName && (this.rules.phone(this.addedContactPhone) === true) && this.addedContactPhone) {
+				this.addedContactPhone = this.addedContactPhone.replace(/(\d{1})(\d{3})(\d{3})(\d{2})(\d{2})/, '+$1 ($2) $3 - $4 - $5');
 				this.$store.dispatch('addContact', { name: this.addedContactName, phone: this.addedContactPhone });
 				this.addedContactName = null;
 				this.addedContactPhone = null;
