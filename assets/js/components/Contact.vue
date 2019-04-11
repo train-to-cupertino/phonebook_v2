@@ -4,8 +4,14 @@
 			{{ data.name }}
 		</span>
 		<span v-show="isEditing">
-			<v-text-field :value="name" @change="v => name = v"></v-text-field>			
-			<v-btn small color="primary" @click="isEditing = false">OK</v-btn> <!-- TODO: выключать редактирование даже если не изменилась модель -->
+			<v-text-field 
+				:value="name" 
+				@change="v => name = v"
+				append-outer-icon="send" 
+				@click:append-outer="isEditing = false" 				
+			></v-text-field>			
+			<!--<v-btn small color="primary" @click="isEditing = false">OK</v-btn>-->
+			<!-- TODO: выключать редактирование даже если не изменилась модель -->
 		</span>
 		<v-progress-circular indeterminate v-if="data.isLoading" color="blue"></v-progress-circular>		
 	</div>

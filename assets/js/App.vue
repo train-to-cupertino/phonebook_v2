@@ -6,7 +6,12 @@
 					{{ contactWhichPhoneIsEdited ? getContact(contactWhichPhoneIsEdited).name + " - ": "" }} Добавить телефон
 				</v-card-title>
 				<v-card-text>
-					<v-text-field v-model="addedPhone" label="Телефон" mask="+7 (###) ### - ## - ##" :rules="[rules.required, rules.phone]"></v-text-field>
+					<v-text-field 
+						v-model="addedPhone" 
+						label="Телефон" 
+						mask="+7 (###) ### - ## - ##" 
+						:rules="[rules.required, rules.phone]" 
+					></v-text-field>
 					<v-btn color="primary" dark @click="addPhone">Добавить</v-btn>
 				</v-card-text>
 				<v-card-actions>
@@ -123,8 +128,6 @@
 		</v-container>
 
 		<div>
-			Оформление: редактирование телефона<br/>
-			Оформление: редактирование контакта<br/>
 			Действие - Редактирование контакта (обработчик)<br/>
 			Drawer под toolbar'ом<br/>
 			Рефакторинг компонентов<br/>
@@ -168,14 +171,21 @@ export default {
 			addedPhone: null,
 			
 			search: '',
-			
+/*			
 			rules: {
 				required: value => !!value || 'Поле не заполнено',
 				phone: value => /^7\d{10}$/.test(value) || 'Введите 10 цифр телефона',
 			}
+*/
 		}
 	},
-
+	
+	computed: {
+		rules: function() {
+			return this.$store.state.rules
+		}
+	},
+	
 	created() {
 		// Получаем список контактов
 		this.$store.dispatch('getContactList');

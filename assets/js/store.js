@@ -14,6 +14,11 @@ export default () => {
 			state: {
 				//contacts: {}
 				contacts: [],
+				
+				rules: {
+					required: value => !!value || 'Поле не заполнено',
+					phone: value => /^7\d{10}$/.test(value) || 'Введите 10 цифр телефона',
+				}				
 			},
 			
 			getters: {
