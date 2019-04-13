@@ -30,9 +30,7 @@ export default {
 	
 	methods: {
 		showAddPhoneForm: function() {
-			//alert(this.owner.id);
 			this.$root.$emit('showAddPhoneForm', this.owner.id);
-			//this.$store.dispatch('addPhone', { contact_id: owner.id, phone: "" });
 		}
 	}
 }

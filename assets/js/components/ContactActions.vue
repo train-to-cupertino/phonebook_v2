@@ -1,9 +1,15 @@
 <template>
-	<div style="width: 75px;">
-		<v-icon small class="mr-2" @click="showAddPhoneForm">phone</v-icon>
-		<v-icon small class="mr-2" @click="editItem(id)">edit</v-icon>
-		<v-icon small @click="deleteContact(id)">delete</v-icon>
-	</div>	
+	<div class="text-xs-center" style="width: 165px;">
+		<v-btn small flat icon color="green accent-4" @click="showAddPhoneForm">
+			<v-icon small>phone</v-icon>
+		</v-btn>
+		<v-btn small flat icon color="orange accent-3" @click="editItem(id)">
+			<v-icon small>edit</v-icon>
+		</v-btn>
+		<v-btn small flat icon color="red darken-1" @click="deleteContact(id)">
+			<v-icon small>delete</v-icon>
+		</v-btn>
+	</div>
 </template>
 
 <script>
@@ -14,11 +20,10 @@ export default {
 	
 	methods: {
 		editItem: function(item) {
-			alert('editItem ' + JSON.stringify(item))
+			this.$root.$emit('enableEditingMode', this.id);
 		},
 		
 		deleteContact: function(item) {
-			// TODO: имя контакта в сообщении
 			// TODO: модальное окно вместо confirm
 			if (confirm("Действительно удалить контакт?")) 
 				this.$store.dispatch('deleteContact', this.id);

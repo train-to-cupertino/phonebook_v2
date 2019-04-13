@@ -10,10 +10,10 @@
 			@change="v => phone = v" 
 			append-outer-icon="send" 
 			@click:append-outer="isEditing = false" 
+			@keyup.enter="isEditing = false" 
 			mask="+7 (###) ### - ## - ##" 
 			:rules="[rules.required, rules.phone]" 
 		></v-text-field>
-		<!-- <v-btn small color="primary" @click="isEditing = false">OK</v-btn> -->
 		<!-- TODO: выключать редактирование даже если не изменилась модель -->
 	</span>			
 </template>

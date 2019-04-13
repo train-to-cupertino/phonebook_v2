@@ -8,9 +8,9 @@
 				:value="name" 
 				@change="v => name = v"
 				append-outer-icon="send" 
-				@click:append-outer="isEditing = false" 				
+				@click:append-outer="isEditing = false" 
+				@keyup.enter="isEditing = false"
 			></v-text-field>			
-			<!--<v-btn small color="primary" @click="isEditing = false">OK</v-btn>-->
 			<!-- TODO: выключать редактирование даже если не изменилась модель -->
 		</span>
 		<v-progress-circular indeterminate v-if="data.isLoading" color="blue"></v-progress-circular>		
@@ -27,9 +27,19 @@ export default {
 	
 	props: ["data"],
 	
+	created() {
+		let _this = this
+	
+		// При прослушивании события "Включить режим редактирования"
+		this.$root.$on('enableEditingMode', function(id) {
+			if (_this.data.id == id)
+				_this.isEditing = true
+		});
+	},
+	
 	data() {
 		return {
-			isEditing: false,
+			isEditing: false, // Режим редактирования
 		}
 	},
 	
@@ -52,16 +62,6 @@ export default {
 			}
 		}
 	},
-	
-	methods: {
-		/*
-		enableEdit: function() {
-			this.$store.state.contacts.map(x => x.isEditing = false);		
-		
-			isEditing = true;
-		}
-		*/
-	}
 }
 </script>
 

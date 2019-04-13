@@ -1,12 +1,10 @@
 <template>
-	<div>
-	<!--{{contacts}}-->
 	<v-data-table :items="contacts" :headers="headers" class="elevation-1" :search="search" :custom-filter="customFilter" rows-per-page-text="Контактов на странице">
 		<template slot="pageText" scope="{ pageStart, pageStop, itemsLength }">
 				С {{ pageStart }} по {{ pageStop }} из {{ itemsLength }} контактов
 		</template>	
 		<template v-slot:items="contacts">
-			<td style="width: 150px;">
+			<td style="width: 250px;">
 				<Contact :data="contacts.item"/>
 			</td>
 			<td class="justify-center px-0" style="width: 100px;">
@@ -27,7 +25,6 @@
 			<div class="mt-2">Не найдены элементы, соответствующие фильтру</div>
 		</template>		
 	</v-data-table>
-	</div>
 </template>
 
 <script>
@@ -45,16 +42,6 @@ export default {
 	},
 	
 	props: ["search"],
-	
-	created() {
-		let _this = this;
-		/*
-		this.$on('showAddPhoneForm', function(contact_id) {
-			alert('ewq');
-			_this.$parent.$emit('showAddPhoneForm', contact_id);
-		});
-		*/
-	},
 	
 	data() {
 		return {
@@ -87,52 +74,43 @@ export default {
 	},
 	
 	methods: {
+		// Инициирует событие показа формы добавления контакта
 		showAddContactForm: function() {
 			this.$root.$emit('showAddContactForm')
 		},
 		
+		// Поисковый фильтр
 		customFilter(items, search, filter) {
 			// Если строка поиска пустая - отдаем все контакты без фильтрации
 			if (!search) { 
 				return items 
 			}
 
-			//
-			function new_filter (val, search) {
+			// Функция фильтрации данных
+			function filterData(val, search) {
 				search = search.toString().toLowerCase().replace(/[^0-9a-zA-ZА-Яа-яёЁ]+/g,"").toLowerCase()
 				return val !== null &&
 					['undefined', 'boolean'].indexOf(typeof val) === -1 &&
 					val.toString().toLowerCase().replace(/[^0-9a-zA-ZА-Яа-яёЁ]+/g,"").indexOf(search) !== -1
 			}
-
-			//let needleAry = search.toString().toLowerCase().split(" ").filter(x => x);
-			//whenever we encounter a space in our search we will filter for both the first and second word (or third word)
-
-			//return items.filter(row => needleAry.every(needle => Object.keys(row).some(key => new_filter(row[key],needle))));
+			
+			// Фильтруем контакты
 			return items.filter(function(row) {
-				if (new_filter(row.name, search))
+				// Если имя соответствует поисковому запросу
+				if (filterData(row.name, search))
 					return true;
-				
-				
-				
-				if (Object.values(row.phones).map(x => x.phone).some(y => new_filter(y, search)))
+
+				// Если хотя бы один из телефонов соответствует запросу
+				if (Object.values(row.phones).map(x => x.phone).some(y => filterData(y, search)))
 					return true;
 				
 				return false;
 			})
-			//foreach needle in our array cycle through the data (row[key]) in the current row looking for a match.
-			// .some will return true and exit the loop if it finds one it will return false if it doesnt
-			// .every will exit the loop if we dont find a match but will return true if all needles match
-			// .filter the rows on each match
-
-
 		}		
 	}
 }
 </script>
 
 <style scoped>
-.debug {
-	font-size: 8px;
-}
+
 </style>

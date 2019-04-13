@@ -1,6 +1,5 @@
 <template>
 	<span>
-		<!--{{ JSON.stringify(phone_owner) }}-->
 		<v-icon small class="ml-1" @click="enableEditMode">edit</v-icon>
 		<v-icon small class="ml-1" @click="deletePhone">delete</v-icon>	
 	</span>

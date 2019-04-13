@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import * as MUTATION from './misc/mutation-types.js'
-//import * as APIURL from './misc/apiurls.js'
 import API_URL from './misc/apiurls.js'
 
 const Http = new Vue;
@@ -74,14 +73,10 @@ export default () => {
 						let contact = state.contacts[contact_id];
 						
 						state.contacts[contact_id].isLoading = false;
-						//state.contacts[contact_id].isEditing = false;
 						
 						if (contact.phones) {
 							for(let phone_id in contact.phones) {
-								//let phone = contact.phones[phone_id];
-								
 								state.contacts[contact_id].phones[phone_id].isLoading = false;
-								//state.contacts[contact_id].phones[phone_id].isEditing = false;
 							}						
 						}
 					}
@@ -107,11 +102,9 @@ export default () => {
 				// Удаление телефона контакта
 				[MUTATION.DELETE_PHONE] (state, data) {
 					let contact = state.contacts.find(x => x.id == data.contact_id)
-					console.log(contact);
-					//contact.phones = contact.phones.filter(x => x.id != data.phone_id)
+					
 					let filteredPhones = {};
 					
-					// TODO: переписать поизящнее
 					for(let phone_id in contact.phones) {
 						let phone = contact.phones[phone_id];
 						
@@ -177,9 +170,7 @@ export default () => {
 				
 				// Изменяет имя контакта
 				changeContactName(context, data) {
-					//context.state.contacts[data.id].isLoading = true;
 					context.getters.contactById(data.id).isLoading = true;
-					//state.contacts.find(x => x.id == index).isLoading = true;
 				
 					Http.$http.get(API_URL, { params: { action: "update_contact", contact_id: data.id, name: data.name }}).then(response => {
 						if (response.ok && response.status == 200) {
