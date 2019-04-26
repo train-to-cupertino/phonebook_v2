@@ -81,12 +81,6 @@
 				<!--<v-flex xs1></v-flex>-->
 			</v-layout>
 		</v-container>
-
-		<div>
-			Drawer под toolbar'ом<br/>
-			Рефакторинг компонентов<br/>
-			Обработка ошибок<br/>
-		</div>
 	</v-app>
 </template>
 

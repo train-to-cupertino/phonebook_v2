@@ -179,8 +179,6 @@ export default () => {
 								return;
 							}
 						}
-						
-						//context.commit(MUTATION.CHANGE_CONTACT_NAME_ERROR, response);
 					});
 				},
 				
