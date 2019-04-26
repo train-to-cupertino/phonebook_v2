@@ -10,8 +10,7 @@
 				append-outer-icon="send" 
 				@click:append-outer="isEditing = false" 
 				@keyup.enter="isEditing = false"
-			></v-text-field>			
-			<!-- TODO: выключать редактирование даже если не изменилась модель -->
+			></v-text-field>
 		</span>
 		<v-progress-circular indeterminate v-if="data.isLoading" color="blue"></v-progress-circular>		
 	</div>
