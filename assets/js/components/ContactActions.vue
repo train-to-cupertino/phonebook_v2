@@ -24,7 +24,6 @@ export default {
 		},
 		
 		deleteContact: function(item) {
-			// TODO: модальное окно вместо confirm
 			if (confirm("Действительно удалить контакт?")) 
 				this.$store.dispatch('deleteContact', this.id);
 		},

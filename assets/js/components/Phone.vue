@@ -14,7 +14,6 @@
 			mask="+7 (###) ### - ## - ##" 
 			:rules="[rules.required, rules.phone]" 
 		></v-text-field>
-		<!-- TODO: выключать редактирование даже если не изменилась модель -->
 	</span>			
 </template>
 
@@ -32,7 +31,6 @@ export default {
 		let _this = this;
 	
 		this.$root.$on('enableEditMode', function(id) {
-			//console.log(id, _this.id);
 			if (id == _this.id)
 				_this.isEditing = true;
 		})

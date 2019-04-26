@@ -74,11 +74,9 @@
 	
 		<v-container grid-list-md text-xs-center>
 			<v-layout row wrap>
-				<!--<v-flex xs1></v-flex>-->
 				<v-flex xs12>
 					<ContactList :search="search" />
 				</v-flex>
-				<!--<v-flex xs1></v-flex>-->
 			</v-layout>
 		</v-container>
 	</v-app>

@@ -17,7 +17,6 @@ export default {
 		},
 	
 		deletePhone: function() {
-			// TODO: модальное окно вместо confirm
 			if (confirm("Действительно удалить телефон " + this.getPhone() + " контакта " + this.phone_owner.name + "? ")) 
 				this.$store.dispatch('deletePhone', { phone_id: this.id, contact_id: this.phone_owner.id });
 		},
@@ -32,9 +31,4 @@ export default {
 }
 </script>
 
-<style>
-div.delete_phone {
-	color: #b00;
-	cursor: pointer;
-}
-</style>
+<style></style>
