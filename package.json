@@ -1,5 +1,5 @@
 {
-	"name": "testsrc",
+	"name": "Phonebook",
 	"scripts": {
 		"build": "webpack -p",
 		"watch": "webpack --watch",
@@ -20,7 +20,6 @@
 		"css-loader": "^2.1.0",
 		"es6-promise": "^4.2.6",
 		"image-webpack-loader": "^4.6.0",
-		"jquery": "^3.3.1",
 		"vue": "^2.6.8",
 		"vue-cli": "^2.9.6",
 		"vue-loader": "^15.7.0",
@@ -34,6 +33,6 @@
 		"webpack-cli": "^3.2.3",
 		"webpack-dev-server": "^3.2.1"
 	},
-	"author": "",
+	"author": "Daniil Netrebko <dnetrebko@yandex.ru>",
 	"license": "ISC"
 }
