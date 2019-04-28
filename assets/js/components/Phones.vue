@@ -1,11 +1,14 @@
 <template>
-	<div v-if="owner || !owner.phones || !Object.keys(owner.phones).length > 0">
-		<Phone v-for="phone in owner.phones" :id="phone.id" :withActions="withActions" />
-		<v-btn dark small color="green" @click="showAddPhoneForm" v-if="withActions">
-			<v-icon>add_circle</v-icon>
-			<span class="ml-2">Добавить телефон</span>
-		</v-btn>
+	<div v-if="owner">
+		<Phone v-if="owner.phones && Object.keys(owner.phones).length > 0" v-for="phone in owner.phones" :id="phone.id" :withActions="withActions" />
+		<div v-if="Object.keys(owner.phones).length == 0 || withActions">
+			<v-btn dark small color="green" @click="showAddPhoneForm">
+				<v-icon>add_circle</v-icon>
+				<span class="ml-2">Добавить телефон</span>
+			</v-btn>		
+		</div>
 	</div>
+	
 
 </template>
 
@@ -36,7 +39,6 @@ export default {
 	methods: {
 		// Показать форму добавления еще одного телефона к контакту
 		showAddPhoneForm: function() {
-			console.log('showAddPhoneForm', this.owner.id);
 			this.$root.$emit('showAddPhoneForm', this.owner.id);
 		}
 	}

@@ -15,7 +15,7 @@
 		<v-dialog v-model="isAddPhoneFormShown" max-width="500px">
 			<v-card>
 				<v-card-title>
-					{{ contactWhichPhoneIsEdited ? getContact(contactWhichPhoneIsEdited).name + " - ": "" }} Добавить телефон
+					{{ getContact(contactWhichPhoneIsEdited) ? getContact(contactWhichPhoneIsEdited).name + " - ": "" }} Добавить телефон
 				</v-card-title>
 				<v-card-text>
 					<v-text-field 
@@ -89,7 +89,6 @@ export default {
 	
 		// Прослушка события отображения формы добавления телефона к контакту
 		this.$root.$on('showAddPhoneForm', function(contact_id) {
-			console.log('on showAddPhoneForm', contact_id);
 			_this.contactWhichPhoneIsEdited = contact_id;
 			_this.isAddPhoneFormShown = true;
 		});	

@@ -33,8 +33,6 @@ export default () => {
 						
 						if (!contact.phones)
 							continue;
-							
-						console.log(index);
 
 						if (Object.keys(contact.phones).indexOf(index.toString()) != -1)
 							return contact;
@@ -82,8 +80,6 @@ export default () => {
 							}						
 						}
 					}
-					
-					console.log(state.contacts);
 				},
 				
 				// Изменение имени контакта

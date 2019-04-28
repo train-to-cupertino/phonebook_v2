@@ -20,7 +20,6 @@ export default {
 	
 	methods: {
 		editItem: function(item) {
-			console.log('id', item);
 			this.$router.push({ path: `/update-contact/${item}` })
 		},
 		
