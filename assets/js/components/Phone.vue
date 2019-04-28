@@ -2,7 +2,7 @@
 	<v-chip dark color="blue" v-if="!isEditing">
 		<span>{{phone}}</span>
 		
-		<PhoneActions :id="id" :phone_owner="owner" />
+		<PhoneActions v-if="withActions" :id="id" :phone_owner="owner" />
 	</v-chip>
 	<span v-else>
 		<v-text-field 
@@ -14,7 +14,7 @@
 			mask="+7 (###) ### - ## - ##" 
 			:rules="[rules.required, rules.phone]" 
 		></v-text-field>
-	</span>			
+	</span>
 </template>
 
 <script>
@@ -25,7 +25,7 @@ export default {
 	
 	components: { PhoneActions },
 	
-	props: ["id"],
+	props: ["id", "withActions"],
 	
 	created() {
 		let _this = this;

@@ -11,7 +11,7 @@
 				<ContactActions :id="contacts.item.id" />
 			</td>
 			<td class="text-xs-left">
-				<Phones :id="contacts.item.id" />
+				<Phones :withActions="false" :id="contacts.item.id" />
 			</td>
 		</template>
 		<template v-slot:no-data>
@@ -41,7 +41,7 @@ export default {
 		Phones
 	},
 	
-	props: ["search"],
+	//props: ["search"],
 	
 	data() {
 		return {
@@ -60,8 +60,6 @@ export default {
 					sortable: false,
 				},
 			],
-			
-			
 		}
 	},
 
@@ -70,7 +68,13 @@ export default {
 			get() {
 				return this.$store.state.contacts;
 			}
-        }
+        },
+		
+		search: {
+			get() {
+				return this.$store.state.search
+			}
+		},		
 	},
 	
 	methods: {

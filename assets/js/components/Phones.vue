@@ -1,13 +1,12 @@
 <template>
-	<div class="phones">
-		<Phone v-for="phone in owner.phones" :id="phone.id" />
-		<div v-if="!owner.phones || Object.keys(owner.phones).length < 1">
-			<v-btn dark small color="green" @click="showAddPhoneForm">
-				<v-icon>add_circle</v-icon>
-				<span class="ml-2">Добавить телефон</span>
-			</v-btn>
-		</div>
+	<div v-if="owner || !owner.phones || !Object.keys(owner.phones).length > 0">
+		<Phone v-for="phone in owner.phones" :id="phone.id" :withActions="withActions" />
+		<v-btn dark small color="green" @click="showAddPhoneForm" v-if="withActions">
+			<v-icon>add_circle</v-icon>
+			<span class="ml-2">Добавить телефон</span>
+		</v-btn>
 	</div>
+
 </template>
 
 <script>
@@ -18,9 +17,15 @@ export default {
 	
 	components: { Phone },
 	
-	props: ["id"],
+	props: ["id", "withActions"],
+	
+	created() {
+		if (!this.owner)
+			this.$router.push('/')
+	},
 	
 	computed: {
+		// Контакт, которому принадлежит данный телефон
 		owner: {
 			get() {
 				return this.$store.getters.contactById(this.id);
@@ -29,7 +34,9 @@ export default {
 	},
 	
 	methods: {
+		// Показать форму добавления еще одного телефона к контакту
 		showAddPhoneForm: function() {
+			console.log('showAddPhoneForm', this.owner.id);
 			this.$root.$emit('showAddPhoneForm', this.owner.id);
 		}
 	}

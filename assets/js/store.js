@@ -17,7 +17,9 @@ export default () => {
 				rules: {
 					required: value => !!value || 'Поле не заполнено',
 					phone: value => /^7\d{10}$/.test(value) || 'Введите 10 цифр телефона',
-				}				
+				},
+
+				search: '',
 			},
 			
 			getters: {
@@ -149,7 +151,12 @@ export default () => {
 				// Изменение номера телефона
 				[MUTATION.UPDATE_PHONE] (state, data) {
 					data.contact.phones[data.id].phone = data.phone;
-				}
+				},
+
+				// Изменение условия поиска
+				[MUTATION.SET_SEARCH_CONDITION] (state, data) {
+					state.search = data
+				},				
 			},
 			
 			

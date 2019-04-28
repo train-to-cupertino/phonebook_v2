@@ -1,4 +1,5 @@
 export const LOAD_CONTACT_LIST = "load_contact_list";
+export const SET_SEARCH_CONDITION = "set_search_condition";
 
 export const ADD_CONTACT = "add_contact";
 export const CHANGE_CONTACT_NAME = "change_contact_name";

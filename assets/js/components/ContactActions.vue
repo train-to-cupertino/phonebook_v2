@@ -20,7 +20,8 @@ export default {
 	
 	methods: {
 		editItem: function(item) {
-			this.$root.$emit('enableEditingMode', this.id);
+			console.log('id', item);
+			this.$router.push({ path: `/update-contact/${item}` })
 		},
 		
 		deleteContact: function(item) {
