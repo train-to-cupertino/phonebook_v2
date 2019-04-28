@@ -4,7 +4,7 @@
 		<v-toolbar dark color="blue">
 			<v-toolbar-side-icon @click.stop="showDrawer = !showDrawer"></v-toolbar-side-icon>		
 			<v-toolbar-title class="mr-3">Контакты</v-toolbar-title>
-			<v-btn dark small color="green" @click="$router.push('create-contact')">
+			<v-btn dark small color="green" @click="$router.push('/create-contact')">
 				<v-icon>add_circle</v-icon>
 				<span class="ml-2">Добавить контакт</span>
 			</v-btn>
@@ -44,7 +44,7 @@
 					</v-list-tile-content>
 				</v-list-tile>
 		
-				<v-list-tile :key="contact_add" @click="$router.push('create-contact')">
+				<v-list-tile :key="contact_add" @click="$router.push('/create-contact')">
 					<v-list-tile-action>
 						<v-icon>person_add</v-icon>
 					</v-list-tile-action>
