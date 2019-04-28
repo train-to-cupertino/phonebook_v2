@@ -16,7 +16,7 @@
 		</template>
 		<template v-slot:no-data>
 			<div class="mt-2">Список контактов пуст</div>
-			<v-btn dark small color="green" @click="showAddContactForm" class="mb-2">
+			<v-btn dark small color="green" @click="$router.push('create-contact')" class="mb-2">
 				<v-icon>add_circle</v-icon>
 				<span class="ml-2">Добавить контакт</span>
 			</v-btn>
