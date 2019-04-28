@@ -2,7 +2,7 @@
 
 1. Склонировать репозиторий
 ```sh
-$ git clone https://github.com/train-to-cupertino/phonebook.git
+$ git clone https://github.com/train-to-cupertino/phonebook_v2.git
 ```
 
 2. Создать БД и таблицы
