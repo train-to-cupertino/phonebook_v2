@@ -1,3 +1,12 @@
+/**
+	Структура приложения
+	--------------------
+	App (Приложение)
+	 |_ Main (Главная страница со списком контактов)
+	 |_ CreateContact (Страница создания контакта)
+	 |_ UpdateContact (Страница редактирования контакта)
+	 
+*/
 import Vue from 'vue'
 import VueResource from 'vue-resource'
 import Vuex from 'vuex'
@@ -5,7 +14,7 @@ import VueRouter from 'vue-router'
 import Vuetify from 'vuetify'
 import getStore from './store.js'
 
-import App from './App.vue'
+import App from './App.vue'	// Компонент "Приложение"
 
 Vue.use(VueResource)
 Vue.use(Vuex)
@@ -19,9 +28,9 @@ const store = getStore();
 
 import 'vuetify/dist/vuetify.min.css'
 
-import Main from "./Main.vue"
-import CreateContact from "./components/CreateContact.vue"
-import UpdateContact from "./components/UpdateContact.vue"
+import Main from "./Main.vue"								// Главная страница со списком контактов
+import CreateContact from "./components/CreateContact.vue"	// Страница создания контакта
+import UpdateContact from "./components/UpdateContact.vue"	// Страница редактирования контакта
 
 const router = new VueRouter({
 	routes: [

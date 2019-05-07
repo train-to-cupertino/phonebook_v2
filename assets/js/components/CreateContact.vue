@@ -26,6 +26,7 @@ export default {
 	},
 	
 	computed: {
+		// Правила валидации
 		rules: function() {
 			return this.$store.state.rules
 		}

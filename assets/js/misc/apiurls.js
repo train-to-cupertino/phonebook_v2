@@ -1,1 +1,1 @@
-export default "/rest.php";
+export default "/rest.php";		// API URL

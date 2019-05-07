@@ -16,22 +16,27 @@
 export default {
 	name: "ContactActions",
 	
-	props: ["id"],
+	props: ["id"],	// ID контакта
 	
 	methods: {
+		// Редактировать контакт
 		editItem: function(item) {
+			// Переходим на страницу редактирования
 			this.$router.push({ path: `/update-contact/${item}` })
 		},
 		
+		// Удалить контакт
 		deleteContact: function(item) {
 			if (confirm("Действительно удалить контакт?")) 
+				// При подтверждении - выполняем действие "Удалить контакт". Параметр: ID
 				this.$store.dispatch('deleteContact', this.id);
 		},
 		
+		// Показать форму добавления телефона к контакту
 		showAddPhoneForm: function() {
 			this.$root.$emit('showAddPhoneForm', this.id);
 		}
-	}	
+	}
 }
 </script>
 

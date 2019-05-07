@@ -9,18 +9,24 @@
 export default {
 	name: "PhoneActions",
 	
-	props: ["id", "phone_owner"],
+	props: [
+		"id", // ID телефона
+		"phone_owner" // Контакт, которому принадлежит телефон
+	],
 	
 	methods: {
+		// Включить режим редактирования
 		enableEditMode: function() {
 			this.$root.$emit('enableEditMode', this.id);
 		},
 	
+		// Удалить телефон
 		deletePhone: function() {
 			if (confirm("Действительно удалить телефон " + this.getPhone() + " контакта " + this.phone_owner.name + "? ")) 
 				this.$store.dispatch('deletePhone', { phone_id: this.id, contact_id: this.phone_owner.id });
 		},
 		
+		// Номер телефона
 		getPhone() {
 			if (!this.id)
 				return

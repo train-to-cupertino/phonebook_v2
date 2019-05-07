@@ -23,18 +23,16 @@ export default {
 	},
 	
 	computed: {
+		// Правила валидации
 		rules: function() {
 			return this.$store.state.rules
 		}
 	},
 	
 	created() {
-		// Получаем список контактов
-		//this.$store.dispatch('getContactList');
-		
 		let _this = this;
 		
-		// Прослушка события отображения формы добавления контакта
+		// Слушаем событие отображения формы добавления контакта
 		this.$root.$on('showAddContactForm', function(contact_id) {
 			_this.isAddContactFormShown = true;
 		});

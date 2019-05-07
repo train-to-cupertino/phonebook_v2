@@ -29,6 +29,7 @@ export default {
 	components: { Phones },
 	
 	computed: {
+		// Правила валидации
 		rules: function() {
 			return this.$store.state.rules
 		},
@@ -37,9 +38,7 @@ export default {
 		name: {
 			get() {
 				let id = this.$route.params.id;
-				//alert(id);
-				//console.log(id);
-				//console.log(this.$store.state.contacts);
+				
 				if (id)
 					if (this.$store.getters.contactById(id))
 						return this.$store.getters.contactById(id).name;
@@ -59,13 +58,13 @@ export default {
 	},
 
 	methods: {
-		// Отменить обновл контакта
+		// Нажатие кнопки "Вернуться"
 		cancelUpdateContact: function() {
 			this.$router.push('/')
 		},
 		
 		
-		// Добавить контакт
+		// Нажатие кнопки "Добавить контакт"
 		updateContact: function() {
 			this.$router.push('/')
 		},	

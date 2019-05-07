@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import PhoneActions from "./PhoneActions.vue"
+import PhoneActions from "./PhoneActions.vue" // Действия с телефоном: Редактировать, Удалить
 
 export default {
 	name: "Phone",
@@ -30,6 +30,7 @@ export default {
 	created() {
 		let _this = this;
 	
+		// Слушаем событие "Включение режима редактирования"
 		this.$root.$on('enableEditMode', function(id) {
 			if (id == _this.id)
 				_this.isEditing = true;
@@ -38,11 +39,12 @@ export default {
 	
 	data() {
 		return {
-			isEditing: false,
+			isEditing: false, // Режим редактирования вкл./выкл.
 		}
 	},
 	
 	computed: {
+		// Телефон
 		phone: {
 			get() {
 				return this.$store.getters.phoneById(this.id);
@@ -53,20 +55,18 @@ export default {
 			}
 		},
 		
+		// Контакт, которому принадлежит телефон
 		owner: {
 			get() {
 				return this.$store.getters.contactByPhoneId(this.id);
 			}
 		},
 		
+		// Правила валидации
 		rules: function() {
 			return this.$store.state.rules
 		}
 	},
-	
-	methods: {
-		
-	}
 }
 </script>
 

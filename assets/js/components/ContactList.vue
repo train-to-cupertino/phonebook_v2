@@ -28,6 +28,9 @@
 </template>
 
 <script>
+/**
+	В таблице контактов отображаются 3 столбца: Имя контакта, Действия с контактом, Телефоны контакта
+*/
 import Contact from "./Contact.vue"
 import ContactActions from "./ContactActions.vue"
 import Phones from "./Phones.vue"
@@ -41,10 +44,9 @@ export default {
 		Phones
 	},
 	
-	//props: ["search"],
-	
 	data() {
 		return {
+			// Заголовки таблицы
 			headers: [
 				{
 					text: 'Имя',
@@ -64,12 +66,14 @@ export default {
 	},
 
 	computed: {
+		// Перечень контактов, отображаемых в таблице
         contacts: {
 			get() {
 				return this.$store.state.contacts;
 			}
         },
 		
+		// Поиск
 		search: {
 			get() {
 				return this.$store.state.search

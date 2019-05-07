@@ -11,14 +11,19 @@ export default () => {
 	if (!storeInstance) 
 		storeInstance = new Vuex.Store({
 			state: {
-				//contacts: {}
+				// Перечень контактов
 				contacts: [],
 				
+				// Правила валидации
 				rules: {
+					// Поле должно быть заполнено
 					required: value => !!value || 'Поле не заполнено',
+					
+					// Номер телефона
 					phone: value => /^7\d{10}$/.test(value) || 'Введите 10 цифр телефона',
 				},
 
+				// Строка поиска
 				search: '',
 			},
 			
@@ -84,11 +89,7 @@ export default () => {
 				
 				// Изменение имени контакта
 				[MUTATION.CHANGE_CONTACT_NAME] (state, data) {
-					//state.contacts[data.id].name = data.name;
 					state.contacts.find(x => x.id == data.id).name = data.name;
-					
-					//state.contacts[data.id].isLoading = false;
-					//context.getters.contactById(data.id).isLoading = true;
 					state.contacts.find(x => x.id == data.id).isLoading = false;
 				},
 				
@@ -166,8 +167,6 @@ export default () => {
 								return;
 							}
 						}
-						
-						//context.commit(MUTATION.SET_CONTACT_LIST_ERROR, response);
 					});
 				},
 				

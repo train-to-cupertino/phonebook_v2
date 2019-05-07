@@ -17,14 +17,14 @@
 </template>
 
 <script>
-import ContactActions from "./ContactActions.vue"
+import ContactActions from "./ContactActions.vue" // Операции с контактом (Добавить телефон, Редактировать, Удалить)
 
 export default {
 	name: "Contact",
 	
 	components: { ContactActions },
 	
-	props: ["data"],
+	props: ["data"],	// Данные контакта
 	
 	created() {
 		let _this = this
@@ -46,17 +46,24 @@ export default {
 		// Имя контакта
 		name: {
 			get() {
+				// Если ID задан
 				if (this.data && this.data.id)
+					// Если найден контакт с заданным ID
 					if (this.$store.getters.contactById(this.data.id))
+						// Возвращаем имя контакта
 						return this.$store.getters.contactById(this.data.id).name;
 				
 				return null;
 			},
 			
 			set(value) {
+				// Если ID задан
 				if (this.data && this.data.id) {
+					// Режим редактирования выкл.
 					this.isEditing = false;
-					this.$store.dispatch('changeContactName', { id: this.data.id, name: value });
+					
+					// Выполнить действие "Изменить имя контакта". Параметры: ID, новое имя
+					this.$store.dispatch('changeContactName', { id: this.data.id, name: value }); 
 				}
 			}
 		}
