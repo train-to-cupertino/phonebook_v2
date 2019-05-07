@@ -30,7 +30,7 @@ export default {
 	
 	created() {
 		// Получаем список контактов
-		this.$store.dispatch('getContactList');
+		//this.$store.dispatch('getContactList');
 		
 		let _this = this;
 		

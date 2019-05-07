@@ -22,11 +22,6 @@ export default {
 	
 	props: ["id", "withActions"],
 	
-	created() {
-		if (!this.owner)
-			this.$router.push('/')
-	},
-	
 	computed: {
 		// Контакт, которому принадлежит данный телефон
 		owner: {

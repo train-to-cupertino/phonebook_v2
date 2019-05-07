@@ -86,6 +86,9 @@ export default {
 	
 	created() {
 		let _this = this;
+		
+		// Получаем список контактов
+		this.$store.dispatch('getContactList');
 	
 		// Прослушка события отображения формы добавления телефона к контакту
 		this.$root.$on('showAddPhoneForm', function(contact_id) {

@@ -37,7 +37,9 @@ export default {
 		name: {
 			get() {
 				let id = this.$route.params.id;
-				
+				//alert(id);
+				//console.log(id);
+				//console.log(this.$store.state.contacts);
 				if (id)
 					if (this.$store.getters.contactById(id))
 						return this.$store.getters.contactById(id).name;
